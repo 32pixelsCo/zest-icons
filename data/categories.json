@@ -1,0 +1,5 @@
+{
+  "wysiwyg": { "name": "WYSIWYG", "keywords": ["text", "edit"] },
+  "emoji": { "keywords": ["smile"] },
+  "food": { "name": "Food & Drink" }
+}
