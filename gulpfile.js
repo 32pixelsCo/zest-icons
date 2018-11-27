@@ -75,11 +75,26 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
     if (object && 'name' in object) { return object['name'] }
     return titlecase(slug)
   }
+  var prettyPrint = function(object) {
+    result = []
+    for (key in object) {
+      if (object.hasOwnProperty(key)) {
+        var value = object[key]
+        var valueString = Array.isArray(value) ? "['" + value.join("', '") + "']" : "'" + value + "'"
+        if (valueString === "['']") { valueString = '[]' }
+        result.push(
+          key + ': ' +
+          valueString
+        )
+      }
+    }
+    return '{ ' + result.join(', ') + ' }'
+  }
   return gulp.src(config.optimized + '/' + config.glob)
     .pipe(sort())
     .pipe(change(function(content) {
       /<svg.*?>([.]*)<\/svg>/g.test(content)
-      var inner = content
+      var paths = content
             .replace(/<svg.*?>/g, '')
             .replace(/ fill="[^"]*"/g, '')
             .replace(/<\/svg>/g, '')
@@ -88,7 +103,16 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
       var category = extractName(parts[0], categories)
       var slug = parts[1].replace(/\.svg$/, '')
       var name = extractName(slug, icons) 
-      return "  '" + slug + "': { 'name': '" + name + "', 'category': '" + category + "', 'paths': '" + inner + "' }"
+      var categoryKeywords = categories[parts[0]] ? categories[parts[0]].keywords || [] : []
+      var iconKeywords = icons[slug] ? icons[slug].keywords || [] : []
+      var keywords = [].concat(categoryKeywords).concat(iconKeywords)
+      var object = {
+        name: name,
+        category: category,
+        paths: paths,
+      }
+      if (keywords.length) { object.keywords = keywords }
+      return "  '" + slug + "': " + prettyPrint(object)
     }))
     .pipe(concat(config.bundle, {newLine: ",\r\n"}))
     .pipe(change(function(content) {

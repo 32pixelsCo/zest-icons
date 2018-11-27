@@ -45,6 +45,7 @@
   "thumbs-up": { "keywords": ["like"] },
   "thumbs-down": { "keywords": ["unlike"] },
   "clap": { "keywords": ["applause"] },
+  "ice-cream-cone": { "keywords": ["icecream"] },
   "horizontal-battery-0": { "name": "Horizontal Battery 0%" },
   "horizontal-battery-25": { "name": "Horizontal Battery 25%" },
   "horizontal-battery-50": { "name": "Horizontal Battery 50%" },
