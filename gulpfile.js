@@ -48,6 +48,7 @@ var sequel  = "\r\n" +
 
 gulp.task('clean-optimized', shell.task('rm -Rf ' + config.optimized + '/*'))
 gulp.task('clean-javascript', shell.task('rm -Rf ' + config.bundle))
+gulp.task('clean-pngs', shell.task('rm -Rf ' + config.pngs))
 
 gulp.task('clean', ['clean-optimized', 'clean-javascript'])
 
@@ -150,7 +151,7 @@ gulp.task('pngs@2x', function() {
     .pipe(gulp.dest(config.pngs))
 })
 
-gulp.task('pngs', function(done) {
+gulp.task('pngs', ['clean-pngs'], function(done) {
   runSequence('pngs@1x', 'pngs@2x', done)
 })
 
