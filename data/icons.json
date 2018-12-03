@@ -19,6 +19,7 @@
   "adventure-shield": { "keywords": ["cross"] },
   "skull-and-bones": { "keywords": ["crossbones", "cross"] },
   "candle": { "keywords": ["flame"] },
+  "compass": { "keywords": ["safari"] },
   "drum-set": { "keywords": ["drums"] },
   "twitter": { "keywords": ["bird"] },
   "snapchat": { "keywords": ["ghost"] },
