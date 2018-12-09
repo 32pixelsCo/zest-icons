@@ -26,25 +26,8 @@ var config = {
   }
 }
 
-var prequel = "(function() {\r\n" +
-              "var ZestIcons = {\r\n"
-var sequel  = "\r\n" +
-              "}\r\n" +
-              "ZestIcons.all = function() {\r\n" +
-              "  var icons = []\r\n" +
-              "  for (name in ZestIcons) {\r\n" +
-              "    if (ZestIcons.hasOwnProperty(name) && typeof ZestIcons[name] !== 'function') {\r\n" +
-              "      icons.push(ZestIcons[name])\r\n" +
-              "    }\r\n" +
-              "  }\r\n" +
-              "  return icons\r\n" +
-              "}\r\n" +
-              "if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {\r\n" +
-              "  module.exports = ZestIcons\r\n" +
-              "} else {\r\n" +
-              "  window.ZestIcons = ZestIcons\r\n" +
-              "}\r\n" +
-              "})();"
+var prequel = "(function() {\n"
+var sequel  = "})();"
 
 gulp.task('clean-optimized', shell.task('rm -Rf ' + config.optimized + '/*'))
 gulp.task('clean-javascript', shell.task('rm -Rf ' + config.bundle))
@@ -70,26 +53,13 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
     }
     return words.join(" ")
   }
-  var extractName = function(slug, lookup) {
-    var object = lookup[slug]
+  var extractName = function(uid, lookup) {
+    var object = lookup[uid]
     if (object && 'name' in object) { return object['name'] }
-    return titlecase(slug)
+    return titlecase(uid)
   }
-  var prettyPrint = function(object) {
-    result = []
-    for (key in object) {
-      if (object.hasOwnProperty(key)) {
-        var value = object[key]
-        var valueString = Array.isArray(value) ? "['" + value.join("', '") + "']" : "'" + value + "'"
-        if (valueString === "['']") { valueString = '[]' }
-        result.push(
-          key + ': ' +
-          valueString
-        )
-      }
-    }
-    return '{ ' + result.join(', ') + ' }'
-  }
+  var before = fs.readFileSync("./src/before.js");
+  var after = fs.readFileSync("./src/after.js");
   return gulp.src(config.optimized + '/' + config.glob)
     .pipe(sort())
     .pipe(change(function(content) {
@@ -101,34 +71,43 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
             .trim()
       var parts = this.fname.split("/")
       var category = extractName(parts[0], categories)
-      var slug = parts[1].replace(/\.svg$/, '')
-      var name = extractName(slug, icons) 
+      var uid = parts[1].replace(/\.svg$/, '')
+      var name = extractName(uid, icons) 
       var categoryKeywords = categories[parts[0]] ? categories[parts[0]].keywords || [] : []
-      var iconKeywords = icons[slug] ? icons[slug].keywords || [] : []
+      var iconKeywords = icons[uid] ? icons[uid].keywords || [] : []
       var keywords = [].concat(categoryKeywords).concat(iconKeywords)
-      var object = {
-        name: name,
-        category: category,
-        paths: paths,
-      }
-      if (keywords.length) { object.keywords = keywords }
-      return "  '" + slug + "': " + prettyPrint(object)
+      var args = []
+      args.push(JSON.stringify(uid))
+      args.push(JSON.stringify(name))
+      args.push(JSON.stringify(category))
+      args.push("'" + paths + "'")
+      if (keywords.length) { args.push(JSON.stringify(keywords)) }
+      return "  i(" + args.join(", ") + ")"
     }))
-    .pipe(concat(config.bundle, {newLine: ",\r\n"}))
+    .pipe(concat(config.bundle, {newLine: ",\n"}))
     .pipe(change(function(content) {
-      return prequel + content + sequel
+      return (
+        prequel +
+        before +
+        "ZestIcons.all = [\n" + content + "\n]\n\n" +
+        after +
+        sequel
+      )
     }))
     .pipe(gulp.dest(config.javascript))
 })
 
 gulp.task('preview-svg', ['javascript'], function(done) {
   var ZestIcons = require(config.bundle)
+  console.log('count>', ZestIcons.count)
+  console.log('icons>', ZestIcons.all)
+
   var svg = []
   var row = 1
   var col = 1
   var maxCol = 41
   var category = null
-  var icons = _.sortBy(ZestIcons.all(), 'category', 'name')
+  var icons = _.sortBy(ZestIcons.all, 'category', 'name')
   icons.forEach(function(icon) {
     if (category !== icon.category) {
       category = icon.category
