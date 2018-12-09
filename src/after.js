@@ -2,8 +2,8 @@ ZestIcons.all.forEach(function(icon) {
   ZestIcons[icon.uid] = icon
 })
 ZestIcons.all.forEach(function(icon) {
-  icon.previous = ZestIcons[icon.index - 1]
-  icon.next = ZestIcons[icon.index + 1]
+  icon.previous = ZestIcons.all[icon.index - 1]
+  icon.next = ZestIcons.all[icon.index + 1]
 })
 
 ZestIcons.count = count
