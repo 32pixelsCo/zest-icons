@@ -99,9 +99,6 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
 
 gulp.task('preview-svg', ['javascript'], function(done) {
   var ZestIcons = require(config.bundle)
-  console.log('count>', ZestIcons.count)
-  console.log('icons>', ZestIcons.all)
-
   var svg = []
   var row = 1
   var col = 1
@@ -158,7 +155,11 @@ gulp.task('pngs', ['clean-pngs'], function(done) {
   runSequence('pngs@1x', 'pngs@2x', done)
 })
 
-gulp.task('release', function() {
+gulp.task('build', function(done) {
+  runSequence('optimize', 'pngs', 'preview', done)
+})
+
+gulp.task('release', ['build'], function() {
   return gulp.src([
       config.optimized + '/' + config.glob,
       config.pngs + '/**/*.png',
