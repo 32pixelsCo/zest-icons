@@ -44,6 +44,7 @@ gulp.task('optimize', ['clean-optimized'], function() {
 gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
   var categories = require('./data/categories')
   var icons = require('./data/icons')
+  var order = require('./data/sort')
   var titlecase = function(string) {
     var words = string.split(/-|\s/)
     for (var i = 0; i < words.length; i++) {
@@ -61,7 +62,21 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
   var before = fs.readFileSync("./src/before.js");
   var after = fs.readFileSync("./src/after.js");
   return gulp.src(config.optimized + '/' + config.glob)
-    .pipe(sort())
+    .pipe(sort({
+      comparator: function(file1, file2) {
+        var parts1 = file1.path.split("/")
+        var parts2 = file2.path.split("/")
+        var uid1 = parts1[parts1.length - 1].replace(/\.svg$/, '')
+        var uid2 = parts2[parts2.length - 1].replace(/\.svg$/, '')
+        var index1 = order.indexOf(uid1)
+        var index2 = order.indexOf(uid2)
+        if (index1 === index2) { return 0 }
+        if (index1 > -1 && index2 === -1) { return -1 }
+        if (index1 === -1 && index2 > -1) { return 1 }
+        if (index1 > index2) { return 1 }
+        if (index1 < index2) { return -1 }
+      }
+    }))
     .pipe(change(function(content) {
       /<svg.*?>([.]*)<\/svg>/g.test(content)
       var paths = content
@@ -104,7 +119,7 @@ gulp.task('preview-svg', ['javascript'], function(done) {
   var col = 1
   var maxCol = 41
   var category = null
-  var icons = _.sortBy(ZestIcons.all, 'category', 'name')
+  var icons = _.sortBy(ZestIcons.all, 'category')
   icons.forEach(function(icon) {
     if (category !== icon.category) {
       category = icon.category
