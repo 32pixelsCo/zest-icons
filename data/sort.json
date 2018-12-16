@@ -143,11 +143,11 @@
   "rotate-right",
 
   "cool",
+  "wink",
   "happy",
   "neutral",
   "sad",
   "angry",
-  "wink",
   "dizzy",
 
   "folder",
@@ -408,8 +408,8 @@
   "checked-checkbox",
   "radio",
   "checked-radio",
-  "toggle-switch-on",
   "toggle-switch",
+  "toggle-switch-on",
 
   "place-marker",
   "locate",
