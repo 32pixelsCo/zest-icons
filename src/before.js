@@ -7,7 +7,7 @@ var i = function(uid, name, category, paths, keywords) {
     name: name,
     category: category,
     paths: paths,
-    keywords: keywords
+    keywords: keywords || []
   }
 }
 

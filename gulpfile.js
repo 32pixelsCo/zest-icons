@@ -85,16 +85,16 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
             .replace(/<\/svg>/g, '')
             .trim()
       var parts = this.fname.split("/")
-      var category = extractName(parts[0], categories)
+      var categoryUid = parts[0]
       var uid = parts[1].replace(/\.svg$/, '')
       var name = extractName(uid, icons) 
-      var categoryKeywords = categories[parts[0]] ? categories[parts[0]].keywords || [] : []
+      var categoryKeywords = categories[categoryUid] ? categories[categoryUid].keywords || [] : []
       var iconKeywords = icons[uid] ? icons[uid].keywords || [] : []
       var keywords = [].concat(categoryKeywords).concat(iconKeywords)
       var args = []
       args.push(JSON.stringify(uid))
       args.push(JSON.stringify(name))
-      args.push(JSON.stringify(category))
+      args.push(JSON.stringify(categoryUid))
       args.push("'" + paths + "'")
       if (keywords.length) { args.push(JSON.stringify(keywords)) }
       return "  i(" + args.join(", ") + ")"
@@ -105,6 +105,7 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
         prequel +
         before +
         "ZestIcons.all = [\n" + content + "\n]\n\n" +
+        "ZestIcons.categories = " + JSON.stringify(categories, "  ") + "\n\n" +
         after +
         sequel
       )
@@ -118,13 +119,14 @@ gulp.task('preview-svg', ['javascript'], function(done) {
   var row = 1
   var col = 1
   var maxCol = 41
-  var category = null
+  var categoryUid = null
   var icons = _.sortBy(ZestIcons.all, 'category')
   icons.forEach(function(icon) {
-    if (category !== icon.category) {
-      category = icon.category
+    if (categoryUid !== icon.category) {
+      categoryUid = icon.category
+      var category = ZestIcons.categories[categoryUid]
       row += col === 1 ? 1 : 3
-      svg.push('<text x="24" y="' + row * 24 + '" style="font-size:12px;font-family:sans-serif">' + category + '</text>')
+      svg.push('<text x="24" y="' + row * 24 + '" style="font-size:12px;font-family:sans-serif">' + category.name + '</text>')
       row += 1
       col = 1
     }
