@@ -7,7 +7,6 @@ var raster = require("gulp-raster")
 var rename = require("gulp-rename")
 var sort = require("gulp-sort")
 var zip = require("gulp-zip")
-var runSequence = require("run-sequence")
 var fs = require('fs')
 var _ = require('lodash')
 
@@ -29,19 +28,22 @@ var config = {
 var prequel = "(function() {\n"
 var sequel  = "})();"
 
+// TODO: break clean-pngs into clean-1x-pngs and clean-2x-pngs
 gulp.task('clean-optimized', shell.task('rm -Rf ' + config.optimized + '/*'))
 gulp.task('clean-javascript', shell.task('rm -Rf ' + config.bundle))
 gulp.task('clean-pngs', shell.task('rm -Rf ' + config.pngs))
 
-gulp.task('clean', ['clean-optimized', 'clean-javascript'])
+var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-pngs'))
+gulp.task('clean', clean)
 
-gulp.task('optimize', ['clean-optimized'], function() {
+function optimize() {
   return gulp.src(config.src + '/' + config.glob)
     .pipe(svgmin(config.svgmin))
     .pipe(gulp.dest(config.optimized))
-})
+}
+gulp.task('optimize', gulp.series('clean-optimized', optimize))
 
-gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
+function javascript() {
   var categories = require('./data/categories')
   var icons = require('./data/icons')
   var order = require('./data/sort')
@@ -111,9 +113,10 @@ gulp.task('javascript', ['clean-javascript', 'optimize'], function() {
       )
     }))
     .pipe(gulp.dest(config.javascript))
-})
+}
+gulp.task('javascript', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript)) 
 
-gulp.task('preview-svg', ['javascript'], function(done) {
+function previewSvg(done) {
   var ZestIcons = require(config.bundle)
   var svg = []
   var row = 1
@@ -143,40 +146,49 @@ gulp.task('preview-svg', ['javascript'], function(done) {
   svg.unshift('<svg width="' + width + '" height="' + height + '" viewBox="0 0 ' + width + ' ' + height +'" xmlns="http://www.w3.org/2000/svg">')
   svg.push('</svg>')
   fs.writeFile(config.preview, svg.join("\r\n"), done)
-})
+}
+gulp.task('preview-svg', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, previewSvg))
 
-gulp.task('preview-png', ['preview-svg'], function() {
+function previewPng() {
   return gulp.src(config.preview)
     .pipe(raster({scale: 2}))
     .pipe(rename({extname: '.png'}))
     .pipe(gulp.dest('./'))
-})
+}
+gulp.task('preview-png', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, previewSvg, previewPng))
 
-gulp.task('preview', ['preview-svg', 'preview-png'])
+var preview = gulp.series(previewSvg, previewPng)
+gulp.task('preview', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, preview))
 
-gulp.task('pngs@1x', function() {
+function pngs1x() {
   return gulp.src(config.src + '/' + config.glob)
     .pipe(raster())
     .pipe(rename({extname: '.png'}))
     .pipe(gulp.dest(config.pngs))
-})
+}
+gulp.task('pngs@1x', gulp.series('clean-pngs', pngs1x))
 
-gulp.task('pngs@2x', function() {
+function pngs2x() {
   return gulp.src(config.src + '/' + config.glob)
     .pipe(raster({scale: 2}))
     .pipe(rename({suffix: '@2x', extname: '.png'}))
     .pipe(gulp.dest(config.pngs))
-})
+}
+gulp.task('pngs@2x', gulp.series('clean-pngs', pngs2x))
 
-gulp.task('pngs', ['clean-pngs'], function(done) {
-  runSequence('pngs@1x', 'pngs@2x', done)
-})
+var pngs = gulp.series(pngs1x, pngs2x)
+gulp.task('pngs', gulp.series('clean-pngs', pngs))
 
-gulp.task('build', function(done) {
-  runSequence('optimize', 'pngs', 'preview', done)
-})
+gulp.task('build', gulp.series(
+  clean,
+  gulp.parallel(
+    gulp.series(optimize, javascript),
+    pngs
+  ),
+  preview
+))
 
-gulp.task('release', ['build'], function() {
+function release() {
   return gulp.src([
       config.optimized + '/' + config.glob,
       config.pngs + '/**/*.png',
@@ -185,4 +197,5 @@ gulp.task('release', ['build'], function() {
     ])
     .pipe(zip(config.zip))
     .pipe(gulp.dest(config.dist))
-})
+}
+gulp.task('release', gulp.series('build', release))
