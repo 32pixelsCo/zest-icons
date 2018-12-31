@@ -87,8 +87,8 @@ function javascript() {
             .replace(/<\/svg>/g, '')
             .trim()
       var parts = this.fname.split("/")
-      var categoryUid = parts[0]
-      var uid = parts[1].replace(/\.svg$/, '')
+      var categoryUid = parts[1]
+      var uid = parts[2].replace(/\.svg$/, '')
       var name = extractName(uid, icons) 
       var categoryKeywords = categories[categoryUid] ? categories[categoryUid].keywords || [] : []
       var iconKeywords = icons[uid] ? icons[uid].keywords || [] : []
