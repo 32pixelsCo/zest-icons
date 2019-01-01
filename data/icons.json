@@ -1,6 +1,7 @@
 {
   "helm": { "keywords": ["sailing"] },
   "sailboat": { "keywords": ["sailing"] },
+  "anchor": { "keywords": ["sailing"] },
   "partly-cloudy": { "keywords": ["cloud", "rain", "sun", "storm"] },
   "thunderstorm": { "keywords": ["cloud", "rain", "sun", "storm", "lightning"] },
   "umbrella": { "keywords": ["cloud", "rain", "sun", "storm"] },
