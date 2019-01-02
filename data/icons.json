@@ -80,6 +80,8 @@
   "solid-spade": { "keywords": ["suite", "cards"] },
   "solid-club": { "keywords": ["suite", "cards"] },
   "solid-diamond": { "keywords": ["suite", "cards"] },
+  "full-screen": { "name": "Full-Screen" },
+  "exit-full-screen": { "name": "Exit Full-Screen" },
   "h1": { "keywords": ["heading"] },
   "h2": { "keywords": ["heading"] },
   "h3": { "keywords": ["heading"] },
