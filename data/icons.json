@@ -34,6 +34,7 @@
   "hex-tiles": { "keywords": ["hexagon", "catan"] },
   "ace-of-spades": { "name": "Ace of Spades", "keywords": ["cards"] },
   "heart-card": { "keywords": ["suite"] },
+  "tic-tac-toe": { "name": "Tic-Tac-Toe" },
   "drum-set": { "keywords": ["drums"] },
   "twitter": { "keywords": ["bird"] },
   "snapchat": { "keywords": ["ghost"] },
