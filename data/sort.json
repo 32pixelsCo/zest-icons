@@ -65,6 +65,11 @@
   "chess-rook",
   "chess-pawn",
   "chess-clock",
+  "hex-mountain",
+  "hex-tiles",
+  "ace-of-spades",
+  "heart-card",
+  "tic-tac-toe",
 
   "facebook",
   "twitter",
