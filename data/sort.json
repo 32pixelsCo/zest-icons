@@ -264,6 +264,8 @@
   "volume-low",
   "volume-medium",
   "volume-high",
+  "increase-brightness",
+  "decrease-brightness",
 
   "menu",
   "more",
@@ -301,6 +303,9 @@
   "exit-full-screen",
   "dropdown-arrow",
   "select-arrows",
+  "toy-brick",
+  "module",
+  "puzzle-piece",
 
   "dollar-symbol",
   "dollar",
@@ -513,5 +518,7 @@
   "table-outer-top-borders",
   "table-outer-right-borders",
   "table-outer-bottom-borders",
-  "table-no-borders"
+  "table-no-borders",
+  "superscript",
+  "subscript"
 ]
