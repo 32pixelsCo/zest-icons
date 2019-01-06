@@ -264,8 +264,8 @@
   "volume-low",
   "volume-medium",
   "volume-high",
-  "increase-brightness",
   "decrease-brightness",
+  "increase-brightness",
 
   "menu",
   "more",
