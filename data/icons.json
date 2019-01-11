@@ -71,6 +71,7 @@
   "bitcoin": { "keywords": ["cryptocurrency"] },
   "litecoin": { "keywords": ["cryptocurrency"] },
   "ethereum": { "keywords": ["cryptocurrency"] },
+  "y-combinator": { "keywords": ["hacker news"] },
   "smiling-face": { "keywords": ["happy", "laugh", "out loud", "lol"] },
   "winking-face": { "keywords": ["sly", "happy", "laugh", "out loud", "lol"] },
   "grinning-face": { "keywords": ["happy", "laugh", "out loud", "lol"] },
