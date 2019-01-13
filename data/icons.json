@@ -31,6 +31,8 @@
   "rain": { "keywords": ["cloud", "storm"] },
   "secure": { "keywords": ["shield"] },
   "edit": { "keywords": ["pencil"] },
+  "pencil": { "keywords": ["edit"] },
+  "rss": { "name": "RSS", "keywords": ["feed", "blog", "articles", "posts"] },
   "graduation-cap": { "keywords": ["hat"] },
   "search": { "keywords": ["magnify", "magnifying glass"] },
   "zoom-in": { "keywords": ["magnify", "magnifying glass"] },
