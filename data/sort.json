@@ -27,7 +27,7 @@
   "up-arrow",
   "down-arrow",
   "circled-left-chevron",
-  "circled-right-chevron ",
+  "circled-right-chevron",
   "circled-up-chevron",
   "circled-down-chevron",
   "circled-left-arrow",
@@ -142,7 +142,7 @@
   "bring-to-front",
   "send-to-back",
   "flip-horizontal",
-  "flip-vertical ",
+  "flip-vertical",
   "rotate-left",
   "rotate-right",
 
