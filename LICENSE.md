@@ -1,28 +1,26 @@
-Beta License
-------------
+Zest Pro License
+----------------
 
-Copyright © 2018 John W. Long
+Copyright © 2019 32pixels, LLC
 
-You are granted a non-exclusive license to use these icons in up to 10 websites
-or applications with up to 5,000,000 impressions per month during the beta
-period. If you would like to these icons on more than 10 websites or
-applications, or if you need a license for more impressions, you must obtain
-written permission by writing <me@johnwlong.com>. At the end of the beta period
-you must purchase a license to continue using the icon pack. Some icons may be
-available for free after the beta period under a different license.
+This license grants the purchaser the right to use the Zest Pro icons for
+commercial and non-commercial purposes. You (the purchaser) are free to use the
+Zest Pro icons in as many projects as you want, as long as you are the owner of
+the projects. Each company or individual that uses Zest Pro in a project is
+required to purchase a separate license.
 
-If you build websites or applications for others, and you use icons from this
-icon pack on one of their websites or applications, you must make them aware of
-this license and ensure that they have a copy of it.
+You (the purchaser) are free to edit, remix, and use the icons without
+attribution, but not to sell or redistribute the icons as such. You are not
+allowed to use the icons in a way that allows downstream redistribution (for
+example in templates or theme kits). If your application or project allows
+users to create content (such as web pages, blog posts, presentations, or PDFs)
+you may not allow the icons to be used in the user generated content.
 
-By using these icons you acknowledge that John W. Long is the exclusive
-copyright holder on all of the icons in this repository and that they are his
-intellectual property. This includes the source code and the design of the
-icons. It also includes any source documents such as Figma documents or Sketch
-files.
+By using these icons you acknowledge that 32pixels, LLC is the exclusive
+copyright holder of all the icons in the Zest Pro icon set and that they are
+32pixels, LLC’s intellectual property. This includes the source code and the
+design of all icons. This also includes any source documents such as Figma
+documents or Sketch files.
 
-This license may change at any time and will be kept up to date at:
-<https://github.com/jlong/zest-icons>
-
-If you do not have access to the above URL you can obtain an updated copy of
-this license by writing <me@johnwlong.com>.
+If you would like to use these icons in a way not consistent with the terms of
+this license agreement, you must obtain written permission from 32pixels, LLC.
