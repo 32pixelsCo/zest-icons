@@ -48,7 +48,7 @@
   "secure": { "keywords": ["check", "shield"] },
   "chat-bubble": { "keywords": ["say", "speech"] },
   "bullhorn": { "keywords": ["feedback"] },
-  "lifebouy": { "keywords": ["help"] },
+  "lifebouy": { "keywords": ["help", "sea", "ocean", "sailing"] },
   "key": { "keywords": ["secure", "lock", "verify", "verified"] },
   "switch-accounts": { "keywords": ["arrows", "exchange"] },
 
