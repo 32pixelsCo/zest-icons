@@ -18,10 +18,10 @@
   "license": "See license in LICENSE.md",
   "bugs": "https://github.com/jlong/zest-icons/issues",
   "homepage": "https://github.com/jlong/zest-icons#readme",
-  "files" : {
+  "files": [
     "svgs/**/*.svg",
     "pngs/**/*.png"
-  },
+  ],
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-change": "^1.0.0",
