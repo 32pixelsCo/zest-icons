@@ -6,7 +6,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jlong/zest-icons.git"
+    "url": "git+https://github.com/32pixelsCo/zest-icons.git"
   },
   "keywords": [
     "icon",
@@ -15,11 +15,13 @@
     "pack"
   ],
   "author": "John W. Long",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "bugs": {
-    "url": "https://github.com/jlong/zest-icons/issues"
-  },
+  "license": "See license in LICENSE.md",
+  "bugs": "url": "https://github.com/jlong/zest-icons/issues",
   "homepage": "https://github.com/jlong/zest-icons#readme",
+  "files" : {
+    "svgs/**/*.svg",
+    "pngs/**/*.png"
+  },
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-change": "^1.0.0",
