@@ -13,11 +13,11 @@ var _ = require('lodash')
 var config = {
   glob: '**/*.svg',
   src: 'src',
-  optimized: 'svgs',
-  pngs: 'pngs',
-  dist: 'dist',
+  optimized: './packages/zest-pro/images',
+  pngs: ['./packages/zest-free/images', './packages/zest-pro/images'],
   javascript: './',
-  bundle: './zest.js',
+  bundle: './packages/zest-pro/zest-pro.js',
+  dist: 'dist',
   zip: 'zest-icons.zip',
   preview: './preview.svg',
   svgmin: {
@@ -31,7 +31,7 @@ var sequel  = "})();"
 // TODO: break clean-pngs into clean-1x-pngs and clean-2x-pngs
 gulp.task('clean-optimized', shell.task('rm -Rf ' + config.optimized + '/*'))
 gulp.task('clean-javascript', shell.task('rm -Rf ' + config.bundle))
-gulp.task('clean-pngs', shell.task('rm -Rf ' + config.pngs))
+gulp.task('clean-pngs', shell.task('rm -Rf ' + config.pngs.join(' ')))
 
 var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-pngs'))
 gulp.task('clean', clean)
@@ -161,18 +161,24 @@ var preview = gulp.series(previewSvg, previewPng)
 gulp.task('preview', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, preview))
 
 function pngs1x() {
-  return gulp.src(config.src + '/' + config.glob)
+  var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(raster())
     .pipe(rename({extname: '.png'}))
-    .pipe(gulp.dest(config.pngs))
+  config.pngs.forEach(function(p) {
+    pipeline = pipeline.pipe(gulp.dest(p))
+  })
+  return pipeline
 }
 gulp.task('pngs@1x', gulp.series('clean-pngs', pngs1x))
 
 function pngs2x() {
-  return gulp.src(config.src + '/' + config.glob)
+  var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(raster({scale: 2}))
     .pipe(rename({suffix: '@2x', extname: '.png'}))
-    .pipe(gulp.dest(config.pngs))
+  config.pngs.forEach(function(p) {
+    pipeline = pipeline.pipe(gulp.dest(p))
+  })
+  return pipeline
 }
 gulp.task('pngs@2x', gulp.series('clean-pngs', pngs2x))
 
@@ -189,12 +195,11 @@ gulp.task('build', gulp.series(
 ))
 
 function release() {
-  return gulp.src([
-      config.optimized + '/' + config.glob,
-      config.pngs + '/**/*.png',
-      config.bundle,
-      'LICENSE.md'
-    ])
+  return gulp.src(
+      [config.optimized + '/' + config.glob]
+      .concat(_.map(config.pngs, function(p) { return p + '/**/*.png' }))
+      .concat([config.bundle, 'LICENSE.md'])
+    )
     .pipe(zip(config.zip))
     .pipe(gulp.dest(config.dist))
 }

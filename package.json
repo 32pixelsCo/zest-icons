@@ -1,27 +1,19 @@
 {
   "name": "zest-icons",
-  "version": "1.0.0",
-  "description": "500+ premium icons meticulously handcrafted and lovingly optimized for web and mobile",
+  "description": "Main repo for building the Zest Free and Zest Pro packages",
+  "private": true,
   "main": "zest.js",
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/32pixelsCo/zest-icons.git"
   },
-  "keywords": [
-    "icon",
-    "icons",
-    "set",
-    "pack"
-  ],
-  "author": "John W. Long",
-  "license": "See license in LICENSE.md",
+  "keywords": [ "icon", "icons", "set", "pack" ],
+  "author": "John W. Long <me@johnwlong.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
   "bugs": "https://github.com/jlong/zest-icons/issues",
   "homepage": "https://github.com/jlong/zest-icons#readme",
-  "files": [
-    "svgs/**/*.svg",
-    "pngs/**/*.png"
-  ],
+  "files": [],
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-change": "^1.0.0",
@@ -32,7 +24,7 @@
     "gulp-sort": "^2.0.0",
     "gulp-svgmin": "^2.1.0",
     "gulp-zip": "^4.2.0",
+    "lerna": "^3.10.6",
     "lodash": "^4.17.11"
-  },
-  "dependencies": {}
+  }
 }
