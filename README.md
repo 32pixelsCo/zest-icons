@@ -20,6 +20,6 @@ If you have requests for additional icons, please file them as issues here:
 
 ## License
 
-See <LICENSE.md>
+See [LICENSE.md](LICENSE.md)
 
-All icons are Copyright © 2019 32pixels, LLC.
+Copyright © 2019 32pixels, LLC.
