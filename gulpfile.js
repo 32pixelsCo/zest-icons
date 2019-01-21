@@ -8,6 +8,7 @@ var rename = require("gulp-rename")
 var sort = require("gulp-sort")
 var zip = require("gulp-zip")
 var fs = require('fs')
+var regexpQuote = require('regexp-quote')
 var _ = require('lodash')
 
 
@@ -23,6 +24,7 @@ var config = {
   packages: {
     'zest-social': {
       object: 'ZestSocial',
+      filter: 'zest-social',
       root: './packages/zest-social',
       optimized: 'images',
       pngs: 'images',
@@ -162,16 +164,34 @@ function jsPipeline(package) {
       var categoryKeywords = categories[categoryUid] ? categories[categoryUid].keywords || [] : []
       var iconKeywords = icons[uid] ? icons[uid].keywords || [] : []
       var keywords = [].concat(categoryKeywords).concat(iconKeywords)
+      var categoryPackages = categories[categoryUid] ? categories[categoryUid].packages || [] : []
+      var iconPackages = icons[uid] ? icons[uid].packages || [] : []
+      var packages = [].concat(categoryPackages).concat(iconPackages)
       var args = []
       args.push(JSON.stringify(uid))
       args.push(JSON.stringify(name))
       args.push(JSON.stringify(categoryUid))
       args.push("'" + paths + "'")
       if (keywords.length) { args.push(JSON.stringify(keywords)) }
+      if (packages.length) { args.push(JSON.stringify(packages)) }
       return "  i(" + args.join(", ") + ")"
     }))
-    /* TODO: filter based on package name */
     .pipe(concat(package.bundle, {newLine: ",\n"}))
+    .pipe(change(function(content) {
+      if (package.filter) {
+        var lines = content.split(",\n")
+        var result = []
+        var regexp = new RegExp('"' + regexpQuote(package.filter) + '"')
+        lines.forEach(function(line) {
+          if (regexp.test(line)) {
+            result.push(line)
+          }
+        })
+        return result.join(",\n")
+      } else {
+        return content
+      }
+    }))
     .pipe(change(function(content) {
       return (
         prequel +
