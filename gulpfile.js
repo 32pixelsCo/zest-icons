@@ -112,7 +112,7 @@ function optimize() {
 }
 gulp.task('optimize', gulp.series('clean-optimized', optimize))
 
-function javascript() {
+function jsPipeline(package) {
   var categories = require('./data/categories')
   var icons = require('./data/icons')
   var order = require('./data/sort')
@@ -132,7 +132,7 @@ function javascript() {
   }
   var before = fs.readFileSync("./src/before.js");
   var after = fs.readFileSync("./src/after.js");
-  return gulp.src(packagePath('zest-pro', 'optimized', config.glob))
+  return gulp.src(packagePath(package.name, 'optimized', config.glob))
     .pipe(sort({
       comparator: function(file1, file2) {
         var parts1 = file1.path.split("/")
@@ -170,7 +170,8 @@ function javascript() {
       if (keywords.length) { args.push(JSON.stringify(keywords)) }
       return "  i(" + args.join(", ") + ")"
     }))
-    .pipe(concat(config.packages['zest-pro'].bundle, {newLine: ",\n"}))
+    /* TODO: filter based on package name */
+    .pipe(concat(package.bundle, {newLine: ",\n"}))
     .pipe(change(function(content) {
       return (
         prequel +
@@ -181,8 +182,12 @@ function javascript() {
         sequel
       )
     }))
-    .pipe(gulp.dest(packagePath('zest-pro', 'javascript')))
+    .pipe(gulp.dest(packagePath(package.name, 'javascript')))
 }
+eachPackage(function(p) {
+  gulp.task('javascript:' + p.name, function() { return jsPipeline(p) } )
+})
+var javascript = gulp.parallel(mapPackages(function(p) { return 'javascript:' + p.name }))
 gulp.task('javascript', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript)) 
 
 function previewSvg(done) {
