@@ -2,5 +2,6 @@
   "wysiwyg": { "name": "WYSIWYG", "keywords": ["text", "edit"] },
   "emoji": { "keywords": ["smile"] },
   "food": { "name": "Food & Drink" },
-  "meters": { "name": "Meters & Guages" }
+  "meters": { "name": "Meters & Guages" },
+  "brands": { "packages": ["zest-social"] }
 }

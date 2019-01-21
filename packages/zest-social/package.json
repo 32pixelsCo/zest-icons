@@ -1,0 +1,20 @@
+{
+  "name": "zest-social",
+  "version": "1.0.0",
+  "description": "Over 100 premium icons meticulously handcrafted and lovingly optimized for web and mobile",
+  "main": "zest-social.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/32pixelsCo/zest-icons.git"
+  },
+  "keywords": [ "icon", "icons", "set", "pack" ],
+  "author": "John W. Long <me@johnwlong.com>",
+  "license": "MIT",
+  "bugs": "https://github.com/32pixelsCo/zest-icons/issues",
+  "homepage": "https://github.com/jlong/zest-icons/tree/master/packages/zest-social#readme",
+  "files": [
+    "images/**/*.png",
+    "images/**/*.svg"
+  ]
+}
