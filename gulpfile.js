@@ -271,26 +271,36 @@ eachPackage(function(p) {
 var svgs = gulp.parallel(mapPackages(function(p) { return 'svgs:' + p.name }))
 gulp.task('svgs', gulp.series('clean-optimized', 'clean-svgs', optimize, javascript, svgs)) 
 
-function pngs1x() {
-  var pipeline = gulp.src(config.src + '/' + config.glob)
+function pngs1xPipeline(package) {
+  var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
+  var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
+  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  return gulp.src(config.src + '/' + config.glob)
+    .pipe(filter(globs))
     .pipe(raster())
     .pipe(rename({extname: '.png'}))
-  eachPackage(function(p) {
-    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'pngs')))
-  })
-  return pipeline
+    .pipe(gulp.dest(packagePath(package.name, 'pngs')))
 }
+eachPackage(function(p) {
+  gulp.task('pngs@1x:' + p.name, function() { return pngs1xPipeline(p) } )
+})
+var pngs1x = gulp.series(mapPackages(function(p) { return 'pngs@1x:' + p.name }))
 gulp.task('pngs@1x', gulp.series('clean-pngs', pngs1x))
 
-function pngs2x() {
-  var pipeline = gulp.src(config.src + '/' + config.glob)
+function pngs2xPipeline(package) {
+  var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
+  var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
+  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  return gulp.src(config.src + '/' + config.glob)
+    .pipe(filter(globs))
     .pipe(raster({scale: 2}))
     .pipe(rename({suffix: '@2x', extname: '.png'}))
-  eachPackage(function(p) {
-    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'pngs')))
-  })
-  return pipeline
+    .pipe(gulp.dest(packagePath(package.name, 'pngs')))
 }
+eachPackage(function(p) {
+  gulp.task('pngs@2x:' + p.name, function() { return pngs2xPipeline(p) } )
+})
+var pngs2x = gulp.series(mapPackages(function(p) { return 'pngs@2x:' + p.name }))
 gulp.task('pngs@2x', gulp.series('clean-pngs', pngs2x))
 
 var pngs = gulp.series(pngs1x, pngs2x)
