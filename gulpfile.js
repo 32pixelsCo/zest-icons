@@ -7,6 +7,7 @@ var raster = require("gulp-raster")
 var rename = require("gulp-rename")
 var sort = require("gulp-sort")
 var zip = require("gulp-zip")
+var filter = require("gulp-filter")
 var fs = require('fs')
 var regexpQuote = require('regexp-quote')
 var _ = require('lodash')
@@ -21,12 +22,13 @@ var config = {
   src: 'src',
   dist: 'dist',
   preview: './preview.svg',
+  optimized: './optimized',
   packages: {
     'zest-social': {
       object: 'ZestSocial',
       filter: 'zest-social',
       root: './packages/zest-social',
-      optimized: 'images',
+      svgs: 'images',
       pngs: 'images',
       javascript: '.',
       bundle: 'zest-social.js',
@@ -35,7 +37,7 @@ var config = {
     'zest-pro': {
       object: 'ZestPro',
       root: './packages/zest-pro',
-      optimized: 'images',
+      svgs: 'images',
       pngs: 'images',
       javascript: '.',
       bundle: 'zest-pro.js',
@@ -75,7 +77,7 @@ eachPackage(function(p, property) {
 
 function packagePath(name, dir, glob) {
   let parts = [config.packages[name].root]
-  if (dir) { parts.push(config.packages[name][dir]) }
+  if (dir && config.packages[name][dir] !== '.') { parts.push(config.packages[name][dir]) }
   if (glob) { parts.push(glob) }
   return parts.join('/')
 }
@@ -88,12 +90,16 @@ var sequel  = "})();"
 // Tasks
 //
 
-gulp.task('clean-optimized', shell.task(mapPackages(function(p) {
-  return 'rm -Rf ' + packagePath(p.name, 'optimized', config.glob)
-}).join(' && ')))
+gulp.task('clean-optimized', shell.task(
+  'rm -Rf ' + config.optimized + '/' + config.glob
+))
 
 gulp.task('clean-javascript', shell.task(mapPackages(function(p) {
   return 'rm -Rf ' + packagePath(p.name, 'bundle')
+}).join(' && ')))
+
+gulp.task('clean-svgs', shell.task(mapPackages(function(p) {
+  return 'rm -Rf ' + packagePath(p.name, 'svgs', config.glob)
 }).join(' && ')))
 
 // TODO: break clean-pngs into clean-1x-pngs and clean-2x-pngs
@@ -101,16 +107,13 @@ gulp.task('clean-pngs', shell.task(mapPackages(function(p) {
   return 'rm -Rf ' + packagePath(p.name, 'pngs')
 }).join(' ')))
 
-var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-pngs'))
+var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-svgs', 'clean-pngs'))
 gulp.task('clean', clean)
 
 function optimize() {
-  var pipeline = gulp.src(config.src + '/' + config.glob)
+  return gulp.src(config.src + '/' + config.glob)
     .pipe(svgmin(config.svgmin))
-  eachPackage(function(p) {
-    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'optimized')))
-  })
-  return pipeline
+    .pipe(gulp.dest(config.optimized))
 }
 gulp.task('optimize', gulp.series('clean-optimized', optimize))
 
@@ -134,7 +137,7 @@ function jsPipeline(package) {
   }
   var before = fs.readFileSync("./src/before.js");
   var after = fs.readFileSync("./src/after.js");
-  return gulp.src(packagePath(package.name, 'optimized', config.glob))
+  return gulp.src(config.optimized + '/' + config.glob)
     .pipe(sort({
       comparator: function(file1, file2) {
         var parts1 = file1.path.split("/")
@@ -254,6 +257,20 @@ gulp.task('preview-png', gulp.series('clean-javascript', 'clean-optimized', opti
 var preview = gulp.series(previewSvg, previewPng)
 gulp.task('preview', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, preview))
 
+function svgPipeline(package) {
+  var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
+  var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
+  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  return gulp.src(config.optimized)
+    .pipe(filter(globs))
+    .pipe(gulp.dest(packagePath(package.name, 'images')))
+}
+eachPackage(function(p) {
+  gulp.task('svgs:' + p.name, function() { return svgPipeline(p) } )
+})
+var svgs = gulp.parallel(mapPackages(function(p) { return 'svgs:' + p.name }))
+gulp.task('svgs', gulp.series('clean-optimized', 'clean-svgs', optimize, javascript, svgs)) 
+
 function pngs1x() {
   var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(raster())
@@ -281,20 +298,16 @@ gulp.task('pngs', gulp.series('clean-pngs', pngs))
 
 gulp.task('build', gulp.series(
   clean,
+  optimize,
+  javascript,
   gulp.parallel(
-    gulp.series(optimize, javascript),
+    svgs,
     pngs
   ),
   preview
 ))
 
 function release() {
-  return gulp.src(
-      [config.optimized + '/' + config.glob]
-      .concat(_.map(config.pngs, function(p) { return p + '/**/*.png' }))
-      .concat([config.bundle, 'LICENSE.md'])
-    )
-    .pipe(zip(config.zip))
-    .pipe(gulp.dest(config.dist))
+  //TODO: reimplement
 }
 gulp.task('release', gulp.series('build', release))
