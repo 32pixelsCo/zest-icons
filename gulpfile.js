@@ -260,7 +260,7 @@ gulp.task('preview', gulp.series('clean-javascript', 'clean-optimized', optimize
 function svgPipeline(package) {
   var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
-  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  var globs = _.map(uids, function(uid) { return '**/' + uid + '.svg' })
   return gulp.src(config.optimized)
     .pipe(filter(globs))
     .pipe(gulp.dest(packagePath(package.name, 'images')))
@@ -274,7 +274,7 @@ gulp.task('svgs', gulp.series('clean-optimized', 'clean-svgs', optimize, javascr
 function pngs1xPipeline(package) {
   var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
-  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  var globs = _.map(uids, function(uid) { return '**/' + uid + '.svg' })
   return gulp.src(config.src + '/' + config.glob)
     .pipe(filter(globs))
     .pipe(raster())
@@ -290,7 +290,7 @@ gulp.task('pngs@1x', gulp.series('clean-pngs', pngs1x))
 function pngs2xPipeline(package) {
   var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
-  var globs = _.map(uids, function(uid) { return uid + '.svg' })
+  var globs = _.map(uids, function(uid) { return '**/' + uid + '.svg' })
   return gulp.src(config.src + '/' + config.glob)
     .pipe(filter(globs))
     .pipe(raster({scale: 2}))
