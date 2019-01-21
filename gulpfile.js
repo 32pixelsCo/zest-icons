@@ -10,36 +10,105 @@ var zip = require("gulp-zip")
 var fs = require('fs')
 var _ = require('lodash')
 
+
+//
+// Config
+//
+
 var config = {
   glob: '**/*.svg',
   src: 'src',
-  optimized: './packages/zest-pro/images',
-  pngs: ['./packages/zest-free/images', './packages/zest-pro/images'],
-  javascript: './',
-  bundle: './packages/zest-pro/zest-pro.js',
   dist: 'dist',
-  zip: 'zest-icons.zip',
   preview: './preview.svg',
+  packages: {
+    'zest-social': {
+      object: 'ZestSocial',
+      root: './packages/zest-social',
+      optimized: 'images',
+      pngs: 'images',
+      javascript: '.',
+      bundle: 'zest-social.js',
+      zip: 'zest-social.zip',
+    },
+    'zest-pro': {
+      object: 'ZestPro',
+      root: './packages/zest-pro',
+      optimized: 'images',
+      pngs: 'images',
+      javascript: '.',
+      bundle: 'zest-pro.js',
+      zip: 'zest-pro.zip'
+    }
+  },
   svgmin: {
     plugins: [{'removeTitle': true}]
   }
 }
 
+
+//
+// Helper functions
+//
+
+function eachPackage(fn) {
+  for (property in config.packages) {
+    if (config.packages.hasOwnProperty(property)) {
+      fn(config.packages[property], property)
+    }
+  }
+}
+
+function mapPackages(fn) {
+  var result = []
+  eachPackage(function(p) {
+    result.push(fn(p))
+  })
+  return result
+}
+
+// Set name on packages
+eachPackage(function(p, property) {
+  p.name = property
+})
+
+function packagePath(name, dir, glob) {
+  let parts = [config.packages[name].root]
+  if (dir) { parts.push(config.packages[name][dir]) }
+  if (glob) { parts.push(glob) }
+  return parts.join('/')
+}
+
 var prequel = "(function() {\n"
 var sequel  = "})();"
 
+
+//
+// Tasks
+//
+
+gulp.task('clean-optimized', shell.task(mapPackages(function(p) {
+  return 'rm -Rf ' + packagePath(p.name, 'optimized', config.glob)
+}).join(' && ')))
+
+gulp.task('clean-javascript', shell.task(mapPackages(function(p) {
+  return 'rm -Rf ' + packagePath(p.name, 'bundle')
+}).join(' && ')))
+
 // TODO: break clean-pngs into clean-1x-pngs and clean-2x-pngs
-gulp.task('clean-optimized', shell.task('rm -Rf ' + config.optimized + '/*'))
-gulp.task('clean-javascript', shell.task('rm -Rf ' + config.bundle))
-gulp.task('clean-pngs', shell.task('rm -Rf ' + config.pngs.join(' ')))
+gulp.task('clean-pngs', shell.task(mapPackages(function(p) {
+  return 'rm -Rf ' + packagePath(p.name, 'pngs')
+}).join(' ')))
 
 var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-pngs'))
 gulp.task('clean', clean)
 
 function optimize() {
-  return gulp.src(config.src + '/' + config.glob)
+  var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(svgmin(config.svgmin))
-    .pipe(gulp.dest(config.optimized))
+  eachPackage(function(p) {
+    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'optimized')))
+  })
+  return pipeline
 }
 gulp.task('optimize', gulp.series('clean-optimized', optimize))
 
@@ -63,7 +132,7 @@ function javascript() {
   }
   var before = fs.readFileSync("./src/before.js");
   var after = fs.readFileSync("./src/after.js");
-  return gulp.src(config.optimized + '/' + config.glob)
+  return gulp.src(packagePath('zest-pro', 'optimized', config.glob))
     .pipe(sort({
       comparator: function(file1, file2) {
         var parts1 = file1.path.split("/")
@@ -101,7 +170,7 @@ function javascript() {
       if (keywords.length) { args.push(JSON.stringify(keywords)) }
       return "  i(" + args.join(", ") + ")"
     }))
-    .pipe(concat(config.bundle, {newLine: ",\n"}))
+    .pipe(concat(config.packages['zest-pro'].bundle, {newLine: ",\n"}))
     .pipe(change(function(content) {
       return (
         prequel +
@@ -112,12 +181,12 @@ function javascript() {
         sequel
       )
     }))
-    .pipe(gulp.dest(config.javascript))
+    .pipe(gulp.dest(packagePath('zest-pro', 'javascript')))
 }
 gulp.task('javascript', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript)) 
 
 function previewSvg(done) {
-  var ZestIcons = require(config.bundle)
+  var ZestIcons = require(packagePath('zest-pro', 'javascript', config.packages['zest-pro'].bundle))
   var svg = []
   var row = 1
   var col = 1
@@ -164,8 +233,8 @@ function pngs1x() {
   var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(raster())
     .pipe(rename({extname: '.png'}))
-  config.pngs.forEach(function(p) {
-    pipeline = pipeline.pipe(gulp.dest(p))
+  eachPackage(function(p) {
+    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'pngs')))
   })
   return pipeline
 }
@@ -175,8 +244,8 @@ function pngs2x() {
   var pipeline = gulp.src(config.src + '/' + config.glob)
     .pipe(raster({scale: 2}))
     .pipe(rename({suffix: '@2x', extname: '.png'}))
-  config.pngs.forEach(function(p) {
-    pipeline = pipeline.pipe(gulp.dest(p))
+  eachPackage(function(p) {
+    pipeline = pipeline.pipe(gulp.dest(packagePath(p.name, 'pngs')))
   })
   return pipeline
 }
