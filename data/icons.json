@@ -73,6 +73,7 @@
   "lightning": { "keywords": ["cloud", "rain", "sun", "storm"] },
   "spark": { "keywords": ["lightning"] },
   "rain": { "keywords": ["cloud", "storm"] },
+  "gem": { "keywords": ["gemstone", "diamond", "ruby", "emerald", "crystal", "mine", "mining"], "packages": ["zest-social"] },
   "sailboat": { "keywords": ["sea", "ocean", "sailing"] },
 
   "secure": { "keywords": ["shield"] },
