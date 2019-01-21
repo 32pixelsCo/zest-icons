@@ -75,5 +75,8 @@ typings/
 # FuseBox cache
 .fusebox/
 
+# Ignore optimized as they are copied into the individual packages
+optimized/
+
 # Ignore distribution zipfiles
 dist/
