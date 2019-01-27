@@ -147,7 +147,7 @@
   "rolling-on-floor-face": { "keywords": ["happy", "grinning", "laugh out loud", "lol", "lolrof"] },
   "heart-eyes-face": { "keywords": ["happy", "love" ] },
   "blowing-kiss-face": { "keywords": ["heart", "happy", "love"] },
-  "sunglasses-face": { "keywords": ["cool", "beach"] },
+  "cool-face": { "keywords": ["cool", "beach", "sunglasses"], "packages": ["zest-social"] },
   "sleeping-face": { "keywords": ["night", "tired"] },
   "neutral-face": { "keywords": ["sad", "unhappy"], "packages": ["zest-social"] },
   "frowning-face": { "keywords": ["sad", "unhappy"], "packages": ["zest-social"] },
