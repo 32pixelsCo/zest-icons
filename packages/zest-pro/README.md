@@ -119,3 +119,5 @@ const MyPage = () => <div>
 ## License
 
 To use **Zest Pro** you must purchase a license throught the [Zest website](http://zesticons.com).
+
+View the complete license [here](./LICENSE.md).
