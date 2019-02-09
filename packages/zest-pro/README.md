@@ -7,7 +7,7 @@ To use **Zest Pro** you must purchase a license throught the [Zest website](http
 
 ## Preview
 
-![Zest Icons](./preview.png)
+![Zest Pro](./preview.png)
 
 ## Installation
 
@@ -17,14 +17,14 @@ To use **Zest Pro** you must purchase a license throught the [Zest website](http
 
 ### 1) SVG usage
 
-All of the Zest Pro Icons are available in SVG and PNG format in the `images`
+All of the Zest Pro icons are available in SVG and PNG format in the `images`
 directory of the package. Icons are organized by category and UID. You can
 browse the files [here](https://github.com/32pixelsCo/zest-icons/tree/master/packages/zest-pro/images).
 
 To use the SVG files in your project, reference them like you would any other
 NPM package file.
 
-### 2) JavaScript 
+### 2) JavaScript usage
 
 Zest Pro also includes a JavaScript file that contains all of the SVG paths for
 the icons. Include `zest-pro.js` in your project like you would any other NPM
