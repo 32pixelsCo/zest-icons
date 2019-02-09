@@ -11,7 +11,7 @@ To use **Zest Pro** you must purchase a license throught the [Zest website](http
 
 ## Installation
 
-    npm install --savedzest-pro
+    npm install --save zest-pro
 
 ## Usage
 
