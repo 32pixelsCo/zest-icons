@@ -21,7 +21,6 @@ var config = {
   glob: '**/*.svg',
   src: 'src',
   dist: 'dist',
-  preview: './preview.svg',
   optimized: './optimized',
   packages: {
     'zest-social': {
@@ -32,6 +31,7 @@ var config = {
       pngs: 'images',
       javascript: '.',
       bundle: 'zest-social.js',
+      preview: 'preview.svg',
       zip: 'zest-social.zip',
     },
     'zest-pro': {
@@ -41,6 +41,7 @@ var config = {
       pngs: 'images',
       javascript: '.',
       bundle: 'zest-pro.js',
+      preview: 'preview.svg',
       zip: 'zest-pro.zip'
     }
   },
@@ -213,8 +214,8 @@ eachPackage(function(p) {
 var javascript = gulp.parallel(mapPackages(function(p) { return 'javascript:' + p.name }))
 gulp.task('javascript', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript)) 
 
-function previewSvg(done) {
-  var ZestIcons = require(packagePath('zest-pro', 'javascript', config.packages['zest-pro'].bundle))
+function previewSvgPipeline(package, done) {
+  var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var svg = []
   var row = 1
   var col = 1
@@ -242,16 +243,24 @@ function previewSvg(done) {
   svg.unshift('<rect x="0" y="0" width="' + width + '" height="' + height + '" fill="#f5f5f5" />')
   svg.unshift('<svg width="' + width + '" height="' + height + '" viewBox="0 0 ' + width + ' ' + height +'" xmlns="http://www.w3.org/2000/svg">')
   svg.push('</svg>')
-  fs.writeFile(config.preview, svg.join("\r\n"), done)
+  fs.writeFile(packagePath(package.name, 'preview'), svg.join("\r\n"), done)
 }
-gulp.task('preview-svg', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, previewSvg))
+eachPackage(function(p) {
+  gulp.task('preview-svg:' + p.name, function(done) { return previewSvgPipeline(p, done) } )
+})
+var previewSvg = gulp.parallel(mapPackages(function(p) { return 'preview-svg:' + p.name }))
+gulp.task('preview-svg', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, previewSvg)) 
 
-function previewPng() {
-  return gulp.src(config.preview)
+function previewPngPipeline(package) {
+  return gulp.src(packagePath(package.name, 'preview'))
     .pipe(raster({scale: 2}))
     .pipe(rename({extname: '.png'}))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest(packagePath(package.name)))
 }
+eachPackage(function(p) {
+  gulp.task('preview-png:' + p.name, function(done) { return previewPngPipeline(p, done) } )
+})
+var previewPng = gulp.series(mapPackages(function(p) { return 'preview-png:' + p.name }))
 gulp.task('preview-png', gulp.series('clean-javascript', 'clean-optimized', optimize, javascript, previewSvg, previewPng))
 
 var preview = gulp.series(previewSvg, previewPng)

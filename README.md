@@ -11,7 +11,7 @@ Visit <http://zesticons.com>
 
 ## Preview
 
-![Zest Icons](/preview.png)
+![Zest Icons](./zest-pro/preview.png)
 
 ## Icon Requests
 
