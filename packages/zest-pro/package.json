@@ -1,14 +1,19 @@
 {
   "name": "zest-pro",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "The Zest Icon library",
   "main": "zest-pro.js",
-  "scripts": { },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/32pixelsCo/zest-icons.git"
   },
-  "keywords": [ "icon", "icons", "set", "pack" ],
+  "keywords": [
+    "icon",
+    "icons",
+    "set",
+    "pack"
+  ],
   "author": "John W. Long <me@johnwlong.com>",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": "https://github.com/32pixelsCo/zest-icons/issues",
