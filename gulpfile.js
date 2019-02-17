@@ -27,8 +27,7 @@ var config = {
       object: 'ZestSocial',
       filter: 'zest-social',
       root: './packages/zest-social',
-      svgs: 'images',
-      pngs: 'images',
+      images: 'images',
       javascript: '.',
       bundle: 'zest-social.js',
       preview: 'preview.svg',
@@ -37,8 +36,7 @@ var config = {
     'zest-pro': {
       object: 'ZestPro',
       root: './packages/zest-pro',
-      svgs: 'images',
-      pngs: 'images',
+      images: 'images',
       javascript: '.',
       bundle: 'zest-pro.js',
       preview: 'preview.svg',
@@ -100,12 +98,12 @@ gulp.task('clean-javascript', shell.task(mapPackages(function(p) {
 }).join(' && ')))
 
 gulp.task('clean-svgs', shell.task(mapPackages(function(p) {
-  return 'rm -Rf ' + packagePath(p.name, 'svgs', config.glob)
+  return 'rm -Rf ' + packagePath(p.name, 'images', config.glob)
 }).join(' && ')))
 
 // TODO: break clean-pngs into clean-1x-pngs and clean-2x-pngs
 gulp.task('clean-pngs', shell.task(mapPackages(function(p) {
-  return 'rm -Rf ' + packagePath(p.name, 'pngs')
+  return 'rm -Rf ' + packagePath(p.name, 'images', '**/*.png')
 }).join(' ')))
 
 var clean = gulp.series(gulp.parallel('clean-optimized', 'clean-javascript', 'clean-svgs', 'clean-pngs'))
@@ -270,7 +268,7 @@ function svgPipeline(package) {
   var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var uids = _.map(ZestIcons.all, function(i) { return i.uid }) 
   var globs = _.map(uids, function(uid) { return '**/' + uid + '.svg' })
-  return gulp.src(config.optimized)
+  return gulp.src(config.optimized + '/' + config.glob)
     .pipe(filter(globs))
     .pipe(gulp.dest(packagePath(package.name, 'images')))
 }
@@ -288,7 +286,7 @@ function pngs1xPipeline(package) {
     .pipe(filter(globs))
     .pipe(raster())
     .pipe(rename({extname: '.png'}))
-    .pipe(gulp.dest(packagePath(package.name, 'pngs')))
+    .pipe(gulp.dest(packagePath(package.name, 'images')))
 }
 eachPackage(function(p) {
   gulp.task('pngs@1x:' + p.name, function() { return pngs1xPipeline(p) } )
@@ -304,7 +302,7 @@ function pngs2xPipeline(package) {
     .pipe(filter(globs))
     .pipe(raster({scale: 2}))
     .pipe(rename({suffix: '@2x', extname: '.png'}))
-    .pipe(gulp.dest(packagePath(package.name, 'pngs')))
+    .pipe(gulp.dest(packagePath(package.name, 'images')))
 }
 eachPackage(function(p) {
   gulp.task('pngs@2x:' + p.name, function() { return pngs2xPipeline(p) } )
