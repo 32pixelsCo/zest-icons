@@ -215,31 +215,63 @@ gulp.task('javascript', gulp.series('clean-javascript', 'clean-optimized', optim
 function previewSvgPipeline(package, done) {
   var ZestIcons = require(packagePath(package.name, 'javascript', package.bundle))
   var svg = []
-  var row = 1
-  var col = 1
-  var maxCol = 41
-  var categoryUid = null
-  var icons = _.sortBy(ZestIcons.all, 'category')
-  icons.forEach(function(icon) {
-    if (categoryUid !== icon.category) {
-      categoryUid = icon.category
-      var category = ZestIcons.categories[categoryUid]
-      row += col === 1 ? 1 : 3
-      svg.push('<text x="24" y="' + row * 24 + '" style="font-size:12px;font-family:sans-serif">' + category.name + '</text>')
-      row += 1
-      col = 1
-    }
-    svg.push('<g transform="translate(' + 24 * col + ', ' + 24 * row + ')">' + icon.paths + '</g>')
-    col += 2
-    if (col >= maxCol) {
-      row += 2
-      col = 1
-    }
-  })
+  var maxCol = 20
   var width = 24 * maxCol
-  var height = 24 * (row + 2)
-  svg.unshift('<rect x="0" y="0" width="' + width + '" height="' + height + '" fill="#f5f5f5" />')
-  svg.unshift('<svg width="' + width + '" height="' + height + '" viewBox="0 0 ' + width + ' ' + height +'" xmlns="http://www.w3.org/2000/svg">')
+  var iconsByCategory = _.groupBy(ZestIcons.all, 'category')
+  var categoryUids = _.keys(iconsByCategory).sort().reverse()
+  var categories = []
+  var accumulatedWidth = ((maxCol * 2) + 1) * 24
+  var accumulatedHeight = (categoryUids.length + 1) * 24
+
+  categoryUids.forEach(function(uid) {
+    var icons = iconsByCategory[uid].sort().reverse()
+    var height = Math.floor(icons.length / maxCol) + (icons.length % maxCol > 0 ? 1 : 0)
+    var width = maxCol
+    var row = height
+    var col = (icons.length % maxCol)
+    if (col === 0) { col = 20 }
+
+    var pixelWidth = ((width * 2) + 1) * 24
+    var pixelHeight = ((height * 2) + 1) * 24
+    accumulatedHeight += pixelHeight 
+     
+    var category = _.clone(ZestIcons.categories[uid])
+    category.height = pixelHeight
+    var contents = []
+    
+    contents.push('<rect x="0" y="0" width="' + pixelWidth + '" height="' + pixelHeight + '" fill="rgba(255,255,255,0)" />')
+
+    icons.forEach(function(icon) {
+      contents.push(
+        '<g id="' + icon.name + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
+          '<rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" />' +
+          icon.paths +
+        '</g>'
+      )
+      col -= 1
+      if (col <= 0) {
+        col = maxCol
+        row -= 1
+      }
+    })
+
+    category.contents = contents.join("\n")
+    categories.push(category)
+  })
+
+  svg.push('<svg width="' + accumulatedWidth + '" height="' + accumulatedHeight + '" viewBox="0 0 ' + accumulatedWidth + ' ' + accumulatedHeight +'" xmlns="http://www.w3.org/2000/svg">')
+  svg.push('<rect x="0" y="0" width="' + accumulatedWidth + '" height="' + accumulatedHeight + '" fill="#fff" />')
+
+  var y = accumulatedHeight
+  categories.forEach(function(category) {
+    y -= category.height
+    svg.push('<g id="' + category.name + '" transform="translate(0,' + y + ')">')
+    svg.push(category.contents)
+    svg.push('</g>')
+    svg.push('<text x="24" y="' + y + '" style="font-size:12px;font-family:sans-serif">' + category.name + '</text>')
+    y -= 24
+  })
+
   svg.push('</svg>')
   fs.writeFile(packagePath(package.name, 'preview'), svg.join("\r\n"), done)
 }
