@@ -243,7 +243,7 @@ function previewSvgPipeline(package, done) {
 
     icons.forEach(function(icon) {
       contents.push(
-        '<g id="' + icon.name + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
+        '<g id="' + category.name + "/" + icon.name + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
           '<rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" />' +
           icon.paths +
         '</g>'
