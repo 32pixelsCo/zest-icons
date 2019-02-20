@@ -242,8 +242,10 @@ function previewSvgPipeline(package, done) {
     contents.push('<rect x="0" y="0" width="' + pixelWidth + '" height="' + pixelHeight + '" fill="rgba(255,255,255,0)" />')
 
     icons.forEach(function(icon) {
+      var target = 'figma'
+      var id = target === 'figma' ? icon.name : category.name + "/" + icon.name
       contents.push(
-        '<g id="' + category.name + "/" + icon.name + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
+        '<g id="' + id + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
           '<rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" />' +
           icon.paths +
         '</g>'
