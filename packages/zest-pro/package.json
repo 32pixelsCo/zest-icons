@@ -19,6 +19,8 @@
   "bugs": "https://github.com/32pixelsCo/zest-icons/issues",
   "homepage": "https://github.com/jlong/zest-icons/tree/master/packages/zest-pro#readme",
   "files": [
+    "ZestPro.sketch",
+    "ZestPro.fig",
     "images/**/*.png",
     "images/**/*.svg"
   ]

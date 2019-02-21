@@ -6,7 +6,6 @@ var svgmin = require("gulp-svgmin")
 var raster = require("gulp-raster")
 var rename = require("gulp-rename")
 var sort = require("gulp-sort")
-var zip = require("gulp-zip")
 var filter = require("gulp-filter")
 var fs = require('fs')
 var regexpQuote = require('regexp-quote')
@@ -31,7 +30,6 @@ var config = {
       javascript: '.',
       bundle: 'zest-social.js',
       preview: 'preview.svg',
-      zip: 'zest-social.zip',
     },
     'zest-pro': {
       object: 'ZestPro',
@@ -40,7 +38,6 @@ var config = {
       javascript: '.',
       bundle: 'zest-pro.js',
       preview: 'preview.svg',
-      zip: 'zest-pro.zip'
     }
   },
   svgmin: {
