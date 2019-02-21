@@ -1,7 +1,7 @@
 {
   "name": "zest-pro",
   "version": "1.0.0-alpha.2",
-  "description": "The Zest Icon library",
+  "description": "The Zest Pro Icon library",
   "main": "zest-pro.js",
   "scripts": {},
   "repository": {
@@ -19,8 +19,10 @@
   "bugs": "https://github.com/32pixelsCo/zest-icons/issues",
   "homepage": "https://github.com/jlong/zest-icons/tree/master/packages/zest-pro#readme",
   "files": [
-    "ZestPro.sketch",
-    "ZestPro.fig",
+    "preview.svg",
+    "preview.png",
+    "Zest Pro.sketch",
+    "Zest Pro.fig",
     "images/**/*.png",
     "images/**/*.svg"
   ]
