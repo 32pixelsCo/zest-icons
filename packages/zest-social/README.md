@@ -1,7 +1,7 @@
 Zest Social
------------
+===========
 
-#### 60+ premium icons meticulously handcrafted and lovingly optimized for web and mobile.
+60+ premium icons meticulously handcrafted and lovingly optimized for web and mobile.
 
 ## Preview
 

@@ -1,5 +1,5 @@
 Zest Social License
--------------------
+===================
 
 Copyright © 2019 32pixels, LLC
 

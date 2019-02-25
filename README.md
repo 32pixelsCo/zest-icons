@@ -1,7 +1,7 @@
 Zest Icons
-----------
+==========
 
-#### 500+ premium icons meticulously handcrafted and lovingly optimized for web and mobile.
+500+ premium icons meticulously handcrafted and lovingly optimized for web and mobile.
 
 Thank you for your interest in the Zest Icon Library!
 

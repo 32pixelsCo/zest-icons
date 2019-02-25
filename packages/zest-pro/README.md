@@ -1,9 +1,12 @@
 Zest Pro
 --------
 
-#### 500+ premium icons meticulously handcrafted and lovingly optimized for web and mobile.
+500+ premium icons meticulously handcrafted and lovingly optimized for web and
+mobile.
 
-To use **Zest Pro** you must purchase a license throught the [Zest website](http://zesticons.com).
+To use **Zest Pro** you must purchase a license throught the [Zest
+website](http://zesticons.com), or, in the case of Open Source,
+[register](http://zesticons.com/open-source/) on the Zest website.
 
 ## Preview
 
