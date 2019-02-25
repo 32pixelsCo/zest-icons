@@ -21,6 +21,7 @@ Each company or individual that uses Zest Pro in a non-open source project is
 required to purchase (or in the case of open source, register for) a separate
 license.
 
+
 ## User Generated Content & Redistribution
 
 You (the licensee) are free to edit, remix, and use the icons without
