@@ -1,6 +1,6 @@
 {
   "name": "zest-social",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The Zest Social Icon library",
   "main": "zest-social.js",
   "scripts": {},
