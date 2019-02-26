@@ -2,7 +2,7 @@
 <rect x="0" y="0" width="984" height="648" fill="#fff" />
 <g id="Settings" transform="translate(0,576)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
-<g id="Webhook" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M13.52 4.046a3 3 0 0 0-2.13 5.486 1 1 0 0 1 .306 1.38l-3.922 6.163a2 2 0 1 1-1.688-1.073l3.44-5.405a5 5 0 1 1 8.398-2.728 1 1 0 1 1-1.97-.348 3 3 0 0 0-2.433-3.475zM11 7a2 2 0 1 1 3.774.925l3.44 5.405a5 5 0 1 1-1.427 8.5 1 1 0 0 1 1.285-1.532 3 3 0 1 0 .317-4.83 1 1 0 0 1-1.38-.307l-3.923-6.163A2 2 0 0 1 11 7zm-5.428 6.9a1 1 0 0 1-.598 1.281A3 3 0 1 0 9.001 18a1 1 0 0 1 1-1h8.266a2 2 0 1 1 0 2H10.9a5 5 0 1 1-6.61-5.698 1 1 0 0 1 1.282.597z"/></g>
+<g id="Webhook" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M13.52 3.046a3 3 0 0 0-2.13 5.486 1 1 0 0 1 .306 1.38l-3.922 6.163a2 2 0 1 1-1.688-1.073l3.44-5.405a5 5 0 1 1 8.398-2.728 1 1 0 1 1-1.97-.348 3 3 0 0 0-2.433-3.475zM11 6a2 2 0 1 1 3.774.925l3.44 5.405a5 5 0 1 1-1.427 8.5 1 1 0 0 1 1.285-1.532 3 3 0 1 0 .317-4.83 1 1 0 0 1-1.38-.307l-3.923-6.163A2 2 0 0 1 11 6zm-5.428 6.9a1 1 0 0 1-.598 1.281A3 3 0 1 0 9.001 17a1 1 0 0 1 1-1h8.266a2 2 0 1 1 0 2H10.9a5 5 0 1 1-6.61-5.698 1 1 0 0 1 1.282.597z"/></g>
 </g>
 <text x="24" y="576" style="font-size:12px;font-family:sans-serif">Settings</text>
 <g id="Outdoors" transform="translate(0,480)">
