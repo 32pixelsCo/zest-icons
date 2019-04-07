@@ -94,6 +94,8 @@
   "module": { "keywords": ["module", "component", "plugin", "plug-in"]},
   "puzzle-piece": { "keywords": ["module", "component", "plugin", "plug-in"]},
   "post": { "keywords": ["blog", "rss"], "packages": ["zest-social"] },
+  "headshot": { "keywords": ["person", "people", "profile"] },
+  "id-card": { "name": "ID Card", "keywords": ["person", "people", "profile"] },
 
   "baseball": { "keywords": ["tennis"] },
   "baseball-cap": { "keywords": ["hat"] },
