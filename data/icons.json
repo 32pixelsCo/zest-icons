@@ -140,6 +140,7 @@
   "litecoin": { "keywords": ["cryptocurrency"] },
   "ethereum": { "keywords": ["cryptocurrency"] },
   "y-combinator": { "keywords": ["hacker news"] },
+  "sass": { "keywords": ["scss", "sassy"] },
 
   "smiling-face": { "keywords": ["happy", "laugh", "out loud", "lol"], "packages": ["zest-social"] },
   "winking-face": { "keywords": ["sly", "happy", "laugh", "out loud", "lol"] },
@@ -159,6 +160,35 @@
   "one-hundred": { "keywords": ["number", "hundreds"] },
   "pile-of-poo": { "keywords": ["poop"] },
   "unicorn": { "keywords": ["horse", "mythical", "beast"] },
+
+  "pencil-folder": { "keywords": ["edit"] },
+  "user-folder": { "keywords": ["share"] },
+  "search-folder": { "keywords": ["magnify", "magnifying glass"] },
+
+  "file": { "keywords": ["document"] },
+  "document": { "keywords": ["file"] },
+  "pencil-file": { "keywords": ["edit"] },
+  "user-file": { "keywords": ["share"] },
+  "search-file": { "keywords": ["magnify", "magnifying glass"] },
+
+  "code-file": { "keywords": ["brackets", "html"] },
+  "curly-brackets-file": { "keywords": ["css", "sass", "scss", "stylus"] },
+  "javascript-file": { "keywords": ["react", "angular", "script"] },
+  "java-file": { "keywords": ["coffee", "cup"] },
+  "question-file": { "keywords": ["php", "unknown"] },
+
+  "image-file": { "keywords": ["gif", "jpeg", "jpg", "png", "apng", "svg"] },
+  "pen-file": { "keywords": ["svg", "drawing"] },
+  "pdf-file": { "keywords": ["adobe"], "packages": ["zest-social"] },
+  "pdf-file": { "keywords": ["access", "database"] },
+  "pdf-file": { "keywords": ["spreadsheet", "database", "csv"] },
+  "zip-file": { "keywords": ["package"] },
+  "star-file": { "keywords": ["favorite"] },
+  "heart-file": { "keywords": ["favorite"] },
+  "cloud-file": { "keywords": ["upload", "download"] },
+  "locked-file": { "keywords": ["secure", "lock", "verify", "verified"] },
+
+  "clock-file": { "keywords": ["history", "time"] },
 
   "locate": { "keywords": ["cross", "crosshairs"] },
   "highway": { "keywords": ["shield"] },
