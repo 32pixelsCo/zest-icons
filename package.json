@@ -20,7 +20,7 @@
   "homepage": "https://github.com/jlong/zest-icons#readme",
   "files": [],
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-change": "^1.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-filter": "^5.1.0",
@@ -28,9 +28,9 @@
     "gulp-rename": "^1.4.0",
     "gulp-shell": "^0.6.5",
     "gulp-sort": "^2.0.0",
-    "gulp-svgmin": "^2.1.0",
+    "gulp-svgmin": "^2.2.0",
     "lerna": "^3.10.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "regexp-quote": "0.0.0"
   }
 }
