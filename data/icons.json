@@ -179,9 +179,9 @@
 
   "image-file": { "keywords": ["gif", "jpeg", "jpg", "png", "apng", "svg"] },
   "pen-file": { "keywords": ["svg", "drawing"] },
-  "pdf-file": { "keywords": ["adobe"], "packages": ["zest-social"] },
-  "pdf-file": { "keywords": ["access", "database"] },
-  "pdf-file": { "keywords": ["spreadsheet", "database", "csv"] },
+  "pdf-file": { "name": "PDF File", "keywords": ["adobe"], "packages": ["zest-social"] },
+  "key-file": { "keywords": ["access", "database"] },
+  "table-file": { "keywords": ["spreadsheet", "database", "csv"] },
   "zip-file": { "keywords": ["package"] },
   "star-file": { "keywords": ["favorite"] },
   "heart-file": { "keywords": ["favorite"] },

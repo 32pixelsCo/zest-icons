@@ -1,16 +1,16 @@
-<svg width="984" height="696" viewBox="0 0 984 696" xmlns="http://www.w3.org/2000/svg">
-<rect x="0" y="0" width="984" height="696" fill="#fff" />
-<g id="Settings" transform="translate(0,624)">
+<svg width="984" height="792" viewBox="0 0 984 792" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="984" height="792" fill="#fff" />
+<g id="Settings" transform="translate(0,720)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
 <g id="Webhook" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M12.52 3.046a3 3 0 00-2.13 5.486 1 1 0 01.306 1.38l-3.922 6.163a2 2 0 11-1.688-1.073l3.44-5.405a5 5 0 118.398-2.728 1 1 0 11-1.97-.348 3 3 0 00-2.433-3.475zM10 6a2 2 0 113.774.925l3.44 5.405a5 5 0 11-1.427 8.5 1 1 0 011.285-1.532 3 3 0 10.317-4.83 1 1 0 01-1.38-.307l-3.923-6.163A2 2 0 0110 6zm-5.428 6.9a1 1 0 01-.598 1.281A3 3 0 108.001 17a1 1 0 011-1h8.266a2 2 0 110 2H9.9a5 5 0 11-6.61-5.698 1 1 0 011.282.597z"/></g>
 </g>
-<text x="24" y="624" style="font-size:12px;font-family:sans-serif">Settings</text>
-<g id="Outdoors" transform="translate(0,528)">
+<text x="24" y="720" style="font-size:12px;font-family:sans-serif">Settings</text>
+<g id="Outdoors" transform="translate(0,624)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
 <g id="Gem" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M5.22 4.375A1 1 0 016 4h12a1 1 0 01.78.375l4 5a1 1 0 01-.04 1.298l-10 11a1 1 0 01-1.48 0l-10-11a1 1 0 01-.04-1.298l4-5zM6.48 6l-2.4 3h3.44l2.4-3H6.48zm5.52.6L10.08 9h3.84L12 6.6zm2.572 4.4H9.428L12 18.074 14.572 11zm-5.246 5.572L7.3 11H4.26l5.066 5.572zm5.348 0L16.7 11h3.04l-5.066 5.572zM19.92 9h-3.438l-2.4-3h3.438l2.4 3z"/></g>
 </g>
-<text x="24" y="528" style="font-size:12px;font-family:sans-serif">Outdoors</text>
-<g id="Misc" transform="translate(0,432)">
+<text x="24" y="624" style="font-size:12px;font-family:sans-serif">Outdoors</text>
+<g id="Misc" transform="translate(0,528)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
 <g id="Post" transform="translate(264, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M2 5a3 3 0 013-3h14a3 3 0 013 3v14a3 3 0 01-3 3H5a3 3 0 01-3-3V5zm3-1a1 1 0 00-1 1v5h16V5a1 1 0 00-1-1H5zm-1 8v7a1 1 0 001 1h14a1 1 0 001-1v-7H4zm10 1a1 1 0 01.707.293l4 4a1 1 0 01-1.414 1.414L14 15.414l-2.293 2.293-1 1a1 1 0 01-1.414-1.414L9.586 17 9 16.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0L11 15.586l2.293-2.293A1 1 0 0114 13zm-3-6a1 1 0 011-1h5a1 1 0 110 2h-5a1 1 0 01-1-1zM7 8.75a1.75 1.75 0 100-3.5 1.75 1.75 0 000 3.5z"/></g>
 <g id="Social Share" transform="translate(216, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M14 5a1 1 0 100 2 1 1 0 000-2zm-3 1a3 3 0 111.707 2.707l-2 2c.188.391.293.83.293 1.293 0 .463-.105.902-.293 1.293l2 2a3 3 0 11-1.414 1.414l-2-2a3 3 0 110-5.415l2-1.999A2.99 2.99 0 0111 6zm-3 5a1 1 0 100 2 1 1 0 000-2zm6 6a.994.994 0 00-.707.293A1 1 0 1014 17z"/></g>
@@ -19,8 +19,8 @@
 <g id="At Symbol" transform="translate(72, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4a8 8 0 103.36 15.262 1 1 0 01.842 1.815A9.966 9.966 0 0112 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10v.019c-.042 2.19-.74 3.665-1.767 4.58-1.004.894-2.193 1.138-3.023 1.138-1.192 0-2.239-.62-2.838-1.554-2.076 1.835-5.07 2.239-6.918.185-1.926-2.14-1.389-5.713.666-7.996 1.988-2.209 5.603-3.062 7.678-.506a1 1 0 011.9.619c-.592 2.076-1.29 4.133-1.813 6.227a1.37 1.37 0 001.325 1.025c.48 0 1.148-.146 1.693-.631.52-.463 1.062-1.354 1.097-3.115A8 8 0 0012 4zm2.353 8.914c.07-.24.253-.881.467-1.628.233-.82-.07-1.606-.708-2.316-.92-1.021-2.892-1.053-4.505.74-1.623 1.802-1.682 4.191-.666 5.32.919 1.021 2.891 1.053 4.505-.74.373-.414.724-.844.907-1.376z"/></g>
 <g id="RSS" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M4 5a1 1 0 011-1c8.284 0 15 6.716 15 15a1 1 0 11-2 0c0-7.18-5.82-13-13-13a1 1 0 01-1-1zm0 5a1 1 0 011-1c5.523 0 10 4.477 10 10a1 1 0 11-2 0 8 8 0 00-8-8 1 1 0 01-1-1zm2.5 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></g>
 </g>
-<text x="24" y="432" style="font-size:12px;font-family:sans-serif">Misc</text>
-<g id="Media" transform="translate(0,336)">
+<text x="24" y="528" style="font-size:12px;font-family:sans-serif">Misc</text>
+<g id="Media" transform="translate(0,432)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
 <g id="Gamepad" transform="translate(552, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5a3 3 0 00-3 3v8a3 3 0 003 3h18a3 3 0 003-3V8a3 3 0 00-3-3H3zM2 8a1 1 0 011-1h18a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V8zm6 2a1 1 0 10-2 0v1H5a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2H8v-1zm8 1.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm2.5 1.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></g>
 <g id="Music Player" transform="translate(504, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M8 3a1 1 0 00-1 1v16a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1H8zM5 4a3 3 0 013-3h8a3 3 0 013 3v16a3 3 0 01-3 3H8a3 3 0 01-3-3V4zm3 .5a.5.5 0 01.5-.5h7a.5.5 0 01.5.5v6a.5.5 0 01-.5.5h-7a.5.5 0 01-.5-.5v-6zM11 16a1 1 0 112 0 1 1 0 01-2 0zm1-3a3 3 0 100 6 3 3 0 000-6z"/></g>
@@ -35,7 +35,12 @@
 <g id="Microphone" transform="translate(72, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M10 6a2 2 0 114 0h-1a1 1 0 100 2h1v2h-1a1 1 0 100 2h1v1a2 2 0 11-4 0V6zm2-4a4 4 0 00-4 4v7a4 4 0 008 0V6a4 4 0 00-4-4zm-5 9a1 1 0 10-2 0v2a7.001 7.001 0 006 6.93V21H8a1 1 0 100 2h8a1 1 0 100-2h-3v-1.07A7.001 7.001 0 0019 13v-2a1 1 0 10-2 0v2a5 5 0 01-10 0v-2z"/></g>
 <g id="Headphones" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M12 5a6 6 0 00-5.64 8.051A4.02 4.02 0 017 13h1a1 1 0 011 1v6a1 1 0 01-1 1H7a4 4 0 01-2.474-7.143 8 8 0 1114.949 0A4 4 0 0117 21h-1.001a1 1 0 01-1-1v-6a1 1 0 011-1h1c.218 0 .432.018.64.051A6 6 0 0012 5zM7 15a2 2 0 000 4v-4zm10 0v4a2 2 0 100-4z"/></g>
 </g>
-<text x="24" y="336" style="font-size:12px;font-family:sans-serif">Media</text>
+<text x="24" y="432" style="font-size:12px;font-family:sans-serif">Media</text>
+<g id="File System" transform="translate(0,336)">
+<rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
+<g id="PDF File" transform="translate(24, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M10 1a1 1 0 00-.707.293l-6 6A1 1 0 003 8v12a3 3 0 003 3h1a1 1 0 100-2H6a1 1 0 01-1-1V9h5a1 1 0 001-1V3h7a1 1 0 011 1v7a1 1 0 102 0V4a3 3 0 00-3-3h-8zM9 7H6.414L9 4.414V7zm1.308 16.563c.158.195.387.354.677.413.27.056.507.005.671-.055.302-.11.54-.317.694-.47.244-.24.5-.566.753-.934 1.11-.383 2.668-.735 4.184-.957.843-.123 1.63-.2 2.292-.226.262.31.501.575.7.776.124.126.262.257.398.357.06.045.175.125.322.182.077.03.58.222 1.043-.152.274-.22.526-.467.702-.744.177-.28.344-.706.205-1.19-.136-.475-.49-.74-.751-.878a2.885 2.885 0 00-.84-.266 6.562 6.562 0 00-.835-.085 55.008 55.008 0 01-2.03-2.714 37.345 37.345 0 01-1.602-2.461c.045-.193.082-.377.112-.553.05-.3.08-.602.073-.885a2.182 2.182 0 00-.196-.903 1.419 1.419 0 00-.912-.767c-.402-.108-.785-.027-1.079.082-.453.167-.702.54-.788.903a1.87 1.87 0 00.013.817c.094.438.313.943.566 1.436.022.044.045.089.069.133-.239.785-.591 1.71-1.01 2.668-.613 1.403-1.334 2.794-1.954 3.788-.423.177-.814.38-1.11.614-.202.159-.473.417-.603.795-.159.464-.046.928.236 1.276zm1.568-.468l.006-.007a.056.056 0 01-.006.007zm5.121-3.514c-.814.12-1.652.276-2.447.458.354-.687.703-1.419 1.022-2.148.18-.413.355-.833.517-1.248.247.374.505.753.767 1.125a59.1 59.1 0 001.22 1.676c-.357.038-.72.085-1.079.137zm-.936-7.197v-.002.002z"/></g>
+</g>
+<text x="24" y="336" style="font-size:12px;font-family:sans-serif">File System</text>
 <g id="Emoji" transform="translate(0,240)">
 <rect x="0" y="0" width="984" height="72" fill="rgba(255,255,255,0)" />
 <g id="Frowning Face" transform="translate(168, 24)"><rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" /><path fill-rule="evenodd" clip-rule="evenodd" d="M4 12a8 8 0 1116 0 8 8 0 01-16 0zm8-10C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm2.033 15.256a1 1 0 001.937-.499C15.531 15.001 13.717 14 12 14c-1.785 0-3.452 1.012-3.97 2.76a1 1 0 001.937.496C10.227 16.386 11.16 16 12 16c.84 0 1.772.385 2.033 1.256zM10.5 10a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm4.5 1.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></g>
