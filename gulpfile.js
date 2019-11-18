@@ -41,6 +41,7 @@ var config = {
     }
   },
   svgmin: {
+    // js2svg: {pretty: true},
     plugins: [{'removeTitle': true}]
   }
 }
@@ -154,6 +155,7 @@ function jsPipeline(package) {
       var paths = content
             .replace(/<svg.*?>/g, '')
             .replace(/ fill="[^"]*"/g, '')
+            // .replace(/\n\s*/g, '')
             .replace(/<\/svg>/g, '')
             .trim()
       var parts = this.fname.split("/")
