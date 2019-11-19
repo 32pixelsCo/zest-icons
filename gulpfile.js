@@ -242,7 +242,7 @@ function previewSvgPipeline(package, done) {
 
     icons.forEach(function(icon) {
       var target = 'figma'
-      var id = target === 'figma' ? icon.name : category.name + "/" + icon.name
+      var id = target === 'figma' ? icon.name : _.escape(category.name) + "/" + icon.name
       contents.push(
         '<g id="' + id + '" transform="translate(' + (((col * 2) - 1) * 24) + ', ' + (((row * 2) - 1) * 24) + ')">' +
           '<rect id="Bounds" x="0" y="0" width="24" height="24" fill="#fff" />' +
@@ -266,10 +266,10 @@ function previewSvgPipeline(package, done) {
   var y = accumulatedHeight
   categories.forEach(function(category) {
     y -= category.height
-    svg.push('<g id="' + category.name + '" transform="translate(0,' + y + ')">')
+    svg.push('<g id="' + _.escape(category.name) + '" transform="translate(0,' + y + ')">')
     svg.push(category.contents)
     svg.push('</g>')
-    svg.push('<text x="24" y="' + y + '" style="font-size:12px;font-family:sans-serif">' + category.name + '</text>')
+    svg.push('<text x="24" y="' + y + '" style="font-size:12px;font-family:sans-serif">' + _.escape(category.name) + '</text>')
     y -= 24
   })
 
