@@ -1,6 +1,6 @@
 {
   "name": "zest-pro",
-  "version": "1.3.0-alpha.1",
+  "version": "1.3.0",
   "description": "The Zest Pro Icon library",
   "main": "zest-pro.js",
   "scripts": {},
