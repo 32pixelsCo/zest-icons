@@ -9,7 +9,7 @@ Zest Social
 
 ## Installation
 
-    npm install --save zest-pro
+    npm install --save zest-social
 
 ## Usage
 
@@ -25,11 +25,11 @@ NPM package file.
 ### 2) JavaScript usage
 
 Zest Social also includes a JavaScript file that contains all of the SVG paths for
-the icons. Include `zest-pro.js` in your project like you would any other NPM
+the icons. Include `zest-social.js` in your project like you would any other NPM
 library. If you're using Webpack with Babel this looks like this:
 
 ```javascript
-import ZestIcons from 'zest-pro'
+import ZestIcons from 'zest-social'
 ```
 
 The API for Zest is simple. All of the icons can be referenced by UID like this:
@@ -86,7 +86,7 @@ Or, if you're using React, you can create and use an `Icon` component like this:
 
 ```javascript
 import React from 'react'
-import ZestIcons from 'zest-pro'
+import ZestIcons from 'zest-social'
 
 const Icon = ({uid, size=24, color='', valign, className}) => {
   let paths

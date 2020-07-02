@@ -31,6 +31,15 @@ var config = {
       bundle: 'zest-social.js',
       preview: 'preview.svg',
     },
+    'zest-free': {
+      object: 'ZestFree',
+      filter: 'zest-free',
+      root: './packages/zest-free',
+      images: 'images',
+      javascript: '.',
+      bundle: 'zest-free.js',
+      preview: 'preview.svg',
+    },
     'zest-pro': {
       object: 'ZestPro',
       root: './packages/zest-pro',

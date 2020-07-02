@@ -51,4 +51,4 @@ this license agreement, you must obtain written permission from 32pixels, LLC.
 
 ---
 
-Copyright © 2019 32pixels, LLC
+Copyright © 2019-2020 32pixels, LLC
