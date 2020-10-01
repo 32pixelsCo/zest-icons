@@ -1,6 +1,6 @@
 {
   "name": "zest-icons",
-  "description": "Main repo for building the Zest Free and Zest Pro packages",
+  "description": "Main repo for building the Zest Free, Zest Social, and Zest Pro packages",
   "private": true,
   "main": "zest.js",
   "scripts": {},
