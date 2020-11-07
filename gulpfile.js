@@ -31,6 +31,15 @@ var config = {
       bundle: 'zest-social.js',
       preview: 'preview.svg',
     },
+    'zest-free': {
+      object: 'ZestFree',
+      filter: 'zest-free',
+      root: './packages/zest-free',
+      images: 'images',
+      javascript: '.',
+      bundle: 'zest-free.js',
+      preview: 'preview.svg',
+    },
     'zest-pro': {
       object: 'ZestPro',
       root: './packages/zest-pro',
@@ -173,7 +182,7 @@ function jsPipeline(package) {
       args.push(JSON.stringify(name))
       args.push(JSON.stringify(categoryUid))
       args.push("'" + paths + "'")
-      if (keywords.length) { args.push(JSON.stringify(keywords)) }
+      if (keywords.length || packages.length) { args.push(JSON.stringify(keywords)) }
       if (packages.length) { args.push(JSON.stringify(packages)) }
       return "  i(" + args.join(", ") + ")"
     }))
