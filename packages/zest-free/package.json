@@ -1,6 +1,6 @@
 {
   "name": "zest-free",
-  "version": "1.3.2-alpha.1",
+  "version": "1.3.2",
   "description": "The Zest Icon library",
   "main": "zest-free.js",
   "scripts": {},
