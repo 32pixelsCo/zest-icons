@@ -35,28 +35,29 @@ import ZestIcons from 'zest-social'
 The API for Zest is simple. All of the icons can be referenced by UID like this:
 
 ```javascript
-ZestIcons['cool-face'] /* => Returns the Cool Face Emoji */
+ZestIcons['smiling-face'] /* => Returns the Smiling Face Emoji */
 ```
 
 This returns an object for each icon that looks like this:
 
 ```javascript
 {
-  index: 149,
-  uid: 'cool-face',
-  name: 'Cool Face',
+  index: 57,
+  uid: 'smiling-face',
+  name: 'Smiling Face',
   category: 'emoji',
-  paths: '<path fill-rule="evenodd" clip-rule="evenodd" d="M5.07 8A7.997 7.997 0 0 1 12 4a7.997 7.997 0 0 1 6.93 4H5.07zm-.911 2.406a8 8 0 1 0 15.683 0C19.412 12.293 18.121 14 16 14c-2.268 0-3.59-1.967-3.91-4h-.18c-.32 2.033-1.642 4-3.91 4-2.123 0-3.413-1.708-3.841-3.594zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM8.757 15.03a1 1 0 0 1 1.21.714C10.227 16.614 11.16 17 12 17c.84 0 1.772-.385 2.033-1.256a1 1 0 0 1 1.937.496C15.452 17.988 13.785 19 12 19c-1.717 0-3.531-1.001-3.97-2.758a1 1 0 0 1 .727-1.212z"/>',
-  keywords: ['smile', 'cool', 'beach'],
-  previous: 'blowing-kiss-face',
-  next: 'sleeping-face'
+  paths: '<path fill-rule="evenodd" clip-rule="evenodd" d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0zm8-10C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM9.967 14.744a1 1 0 0 0-1.937.498C8.469 17 10.283 18 12 18c1.785 0 3.452-1.012 3.97-2.76a1 1 0 0 0-1.937-.496C13.773 15.614 12.84 16 12 16c-.84 0-1.772-.385-2.033-1.256zM10.5 10a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm4.5 1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>',
+  keywords: [ 'smile', 'happy', 'laugh', 'out loud', 'lol' ],
+  packages: [ 'zest-social', 'zest-free' ],
+  previous: 'zest',
+  next: 'cool-face'
 }
 ```
 
 Using this API you can construct an SVG string for an icon like this:
 
 ```javascript
-var paths = ZestIcons['cool-face'].paths
+var paths = ZestIcons['smiling-face'].paths
 var iconString = '<svg width="24" height="24" viewBox="0 0 24 24">' + paths + '</svg>'
 ```
 
@@ -78,7 +79,7 @@ function createIconElement(uid, options) {
 }
 
 var el = document.getElementById('example')
-var icon = createIconElement('cool-face', {color: '#f09', size: 48, valign: 'middle'})
+var icon = createIconElement('smiling-face', {color: '#f09', size: 48, valign: 'middle'})
 el.appendChild(icon)
 ```
 
@@ -109,7 +110,7 @@ const Icon = ({uid, size=24, color='', valign, className}) => {
 const MyPage = () => <div>
   <h1>
     Hello Zest!
-    <Icon uid="cool-face" color="#f09" size="48" valign="middle" />
+    <Icon uid="smiling-face" color="#f09" size="48" valign="middle" />
   </h1>
 </div>
 ```
