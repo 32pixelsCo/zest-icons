@@ -241,12 +241,12 @@ function previewSvgPipeline(package, done) {
 
     var pixelWidth = ((width * 2) + 1) * 24
     var pixelHeight = ((height * 2) + 1) * 24
-    accumulatedHeight += pixelHeight 
-     
+    accumulatedHeight += pixelHeight
+
     var category = _.clone(ZestIcons.categories[uid])
     category.height = pixelHeight
     var contents = []
-    
+
     contents.push('<rect x="0" y="0" width="' + pixelWidth + '" height="' + pixelHeight + '" fill="rgba(255,255,255,0)" />')
 
     icons.forEach(function(icon) {
