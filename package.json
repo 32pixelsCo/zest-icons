@@ -29,9 +29,9 @@
     "gulp-shell": "^0.6.5",
     "gulp-sort": "^2.0.0",
     "gulp-svgmin": "2.1.0",
-    "svgo": "1.1.1",
     "lerna": "^3.10.6",
     "lodash": "^4.17.15",
-    "regexp-quote": "0.0.0"
+    "regexp-quote": "0.0.0",
+    "svgo": "1.1.1"
   }
 }
