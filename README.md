@@ -22,4 +22,4 @@ If you have requests for additional icons, please file them as issues here:
 
 See [LICENSE.md](LICENSE.md)
 
-Copyright © 2019 32pixels, LLC.
+Copyright © 2019-2021 32pixels, LLC.
