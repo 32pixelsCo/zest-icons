@@ -80,3 +80,5 @@ optimized/
 
 # Ignore distribution zipfiles
 dist/
+
+.DS_Store
